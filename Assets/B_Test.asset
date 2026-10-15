@@ -20,17 +20,23 @@ MonoBehaviour:
   minMoisture: 0
   maxMoisture: 1
   layers:
-  - layerName: 
-    entries: []
-    cellSize: 0
-    scaleRange: {x: 0, y: 0}
-    exclusionRadius: 0
-    minHeight: 0
-    maxHeight: 0
+  - layerName: Trees
+    entries:
+    - prefab: {fileID: 7035193621582100787, guid: 2a3a5cfe03b8d4745bd77dae5a5f5774, type: 3}
+      weight: 5
+    - prefab: {fileID: 2873784948236536173, guid: 972c378e51b4b1b458167da621a28fd0, type: 3}
+      weight: 8
+    - prefab: {fileID: 3351107634038123682, guid: e061c3c2929a4ff4ea6e1fcc179c3f99, type: 3}
+      weight: 12
+    cellSize: 7
+    scaleRange: {x: 0.8, y: 1.3}
+    exclusionRadius: 2.5
+    minHeight: 0.08
+    maxHeight: 0.7
     minSlope: 0
-    maxSlope: 0
-    noiseFrequency: 0
-    minDensity: 0
+    maxSlope: 30
+    noiseFrequency: 0.01
+    minDensity: 0.5
     alignToSlope: 0
   - layerName: Rocks
     entries:
@@ -44,7 +50,7 @@ MonoBehaviour:
     scaleRange: {x: 0.6, y: 3}
     exclusionRadius: 2
     minHeight: 0
-    maxHeight: 0
+    maxHeight: 1
     minSlope: 25
     maxSlope: 70
     noiseFrequency: 0

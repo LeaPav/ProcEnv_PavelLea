@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b008819010a5542439c0d2c335dda888, type: 3}
+  m_Name: B_Rocaille
+  m_EditorClassIdentifier: Assembly-CSharp::BiomeDefinition
+  biomeName: Rocaille
+  minHeight: 0.65
+  maxHeight: 1
+  minSlope: 0
+  maxSlope: 90
+  minMoisture: 0
+  maxMoisture: 1
+  layers:
+  - layerName: Rocks
+    entries:
+    - prefab: {fileID: 4843524868254211946, guid: 0b7c39db641be5044ab85ba9f56a629a, type: 3}
+      weight: 2
+    - prefab: {fileID: 7105557981267009923, guid: 8b2f7789077f69f458e3919626d6ea22, type: 3}
+      weight: 4
+    - prefab: {fileID: 4356480299396696560, guid: c65625e040ac42e46ba4222b69c41558, type: 3}
+      weight: 3
+    - prefab: {fileID: 1604413879457636381, guid: 7cb1a6b5b01d08b449d57dfddf54dd44, type: 3}
+      weight: 5
+    - prefab: {fileID: 2586713759252572031, guid: 87123ac33e4f0f04bacc28c3d2dcb0f6, type: 3}
+      weight: 8
+    - prefab: {fileID: 5514129879276577408, guid: b2981534d2ac4244fafb153e0cb4c9c2, type: 3}
+      weight: 10
+    - prefab: {fileID: 6819962056721478856, guid: 6b03fd5ce97ca2449b3b9a92cfce1ec5, type: 3}
+      weight: 12
+    - prefab: {fileID: 1418860561918544383, guid: 21440718d3f07344e841a649af5745d8, type: 3}
+      weight: 15
+    - prefab: {fileID: 5389395240314065769, guid: 967b6a4dedfb5424f8c3a056595dab0e, type: 3}
+      weight: 0
+    - prefab: {fileID: 299869526856194824, guid: f4bf1f00267b19b4a8174c9b9a311b21, type: 3}
+      weight: 15
+    - prefab: {fileID: 2010085120437849477, guid: 9ec55189fab312141825d31ad5584d45, type: 3}
+      weight: 18
+    cellSize: 8
+    scaleRange: {x: 0.5, y: 3}
+    exclusionRadius: 0
+    minHeight: 0
+    maxHeight: 1
+    minSlope: 0
+    maxSlope: 0
+    noiseFrequency: 0
+    minDensity: 0
+    alignToSlope: 0
