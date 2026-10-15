@@ -69,6 +69,24 @@ public static class PointOps
         return res;
     }
 
+    /// <summary>
+    /// Garde uniquement les points situés dans un disque (vu de dessus, sur le plan XZ).
+    /// Fonction pure : ne modifie pas la liste d'entrée, renvoie une nouvelle liste.
+    /// </summary>
+    public static List<SpawnPoint> FilterByDistanceFromCenter(List<SpawnPoint> pts, Vector3 center, float radius)
+    {
+        var res = new List<SpawnPoint>(pts.Count);
+        float radiusSqr = radius * radius;   // on compare les carrés : pas besoin de racine carrée
+
+        foreach (var p in pts)
+        {
+            float dx = p.position.x - center.x;
+            float dz = p.position.z - center.z;
+            if (dx * dx + dz * dz <= radiusSqr) res.Add(p);
+        }
+        return res;
+    }
+
     /// <summary>Supprime les points qui se chevauchent. Les plus grands sont gardés en priorité.</summary>
     public static List<SpawnPoint> SelfPrune(List<SpawnPoint> pts, float baseRadius)
     {
