@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: B_Rocaille
   m_EditorClassIdentifier: Assembly-CSharp::BiomeDefinition
   biomeName: Rocaille
-  minHeight: 0.65
+  minHeight: 0.4
   maxHeight: 1
-  minSlope: 0
+  minSlope: 15
   maxSlope: 90
   minMoisture: 0
   maxMoisture: 1
@@ -46,11 +46,25 @@ MonoBehaviour:
       weight: 18
     cellSize: 8
     scaleRange: {x: 0.5, y: 3}
-    exclusionRadius: 0
+    exclusionRadius: 1
     minHeight: 0
     maxHeight: 1
     minSlope: 0
-    maxSlope: 0
-    noiseFrequency: 0
+    maxSlope: 90
+    noiseFrequency: 0.05
     minDensity: 0
+    alignToSlope: 0
+  - layerName: Arbustes
+    entries:
+    - prefab: {fileID: 7992715529498131577, guid: 0cc0db2b14252644da9f1f74ed0c8f90, type: 3}
+      weight: 2
+    cellSize: 5
+    scaleRange: {x: 0.5, y: 1.5}
+    exclusionRadius: 0.8
+    minHeight: 0
+    maxHeight: 1
+    minSlope: 0
+    maxSlope: 90
+    noiseFrequency: 0.05
+    minDensity: 0.7
     alignToSlope: 0

@@ -12,11 +12,49 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b008819010a5542439c0d2c335dda888, type: 3}
   m_Name: B_Prairie
   m_EditorClassIdentifier: Assembly-CSharp::BiomeDefinition
-  biomeName: "For\xEAt"
+  biomeName: Prairie
   minHeight: 0
-  maxHeight: 1
+  maxHeight: 0.65
   minSlope: 0
-  maxSlope: 90
+  maxSlope: 45
   minMoisture: 0
   maxMoisture: 1
-  layers: []
+  layers:
+  - layerName: Small Trees
+    entries: []
+    cellSize: 25
+    scaleRange: {x: 0, y: 0}
+    exclusionRadius: 0
+    minHeight: 0
+    maxHeight: 1
+    minSlope: 0
+    maxSlope: 0
+    noiseFrequency: 0
+    minDensity: 0.6
+    alignToSlope: 0
+  - layerName: Flowers
+    entries:
+    - prefab: {fileID: 209746063030608102, guid: b39d8859c88551c419bd824dd7c03825, type: 3}
+      weight: 1
+    - prefab: {fileID: 8046532413778691362, guid: dbf9da81d60e3e54197c89ca9347e23b, type: 3}
+      weight: 2
+    - prefab: {fileID: 6844131983693280782, guid: 6f5ef3851ad6b8842b39aae23cfa9e2e, type: 3}
+      weight: 0.5
+    - prefab: {fileID: 4046191999865102442, guid: b92201891d7079040b76063c32ac7198, type: 3}
+      weight: 0.2
+    - prefab: {fileID: 2253860897827643729, guid: fc99a2bd43757ee41ae71385fd0dee9b, type: 3}
+      weight: 0.1
+    - prefab: {fileID: 6702938282480798935, guid: bdc3d67f142e2474ca75d4733f8ad005, type: 3}
+      weight: 0.6
+    - prefab: {fileID: 9175352423537535364, guid: b7e1ccd7c4c37d749acd69c4386c7e34, type: 3}
+      weight: 0.2
+    cellSize: 4
+    scaleRange: {x: 0.8, y: 1.2}
+    exclusionRadius: 0.3
+    minHeight: 0
+    maxHeight: 1
+    minSlope: 0
+    maxSlope: 90
+    noiseFrequency: 0.05
+    minDensity: 0.4
+    alignToSlope: 0
