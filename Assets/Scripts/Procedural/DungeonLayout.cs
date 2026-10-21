@@ -69,8 +69,45 @@ public class DungeonLayout
     }
 
     // ---------- 2. Relier les salles ----------
+    void SortRoomsByProximity()
+    {
+        if (rooms.Count < 3) return;
+
+        var remaining = new List<RoomRect>(rooms);
+        var sorted = new List<RoomRect>();
+
+        RoomRect current = remaining[0];
+        remaining.RemoveAt(0);
+        sorted.Add(current);
+
+        while (remaining.Count > 0)
+        {
+            int best = 0;
+            int bestDist = int.MaxValue;
+            for (int i = 0; i < remaining.Count; i++)
+            {
+                int dist = System.Math.Abs(remaining[i].CenterX - current.CenterX)
+                         + System.Math.Abs(remaining[i].CenterY - current.CenterY);
+                if (dist < bestDist)
+                {
+                    bestDist = dist;
+                    best = i;
+                }
+            }
+            current = remaining[best];
+            remaining.RemoveAt(best);
+            sorted.Add(current);
+        }
+
+        rooms.Clear();
+        rooms.AddRange(sorted);
+    }
+
+    // ---------- 2. Relier les salles ----------
     void ConnectRooms(float loopChance)
     {
+        SortRoomsByProximity();
+
         // chaînage : chaque salle est reliée à la précédente => connectivité garantie
         for (int i = 1; i < rooms.Count; i++)
             Corridor(rooms[i - 1], rooms[i]);
@@ -88,7 +125,16 @@ public class DungeonLayout
     void Corridor(RoomRect a, RoomRect b)
     {
         int x1 = a.CenterX, y1 = a.CenterY, x2 = b.CenterX, y2 = b.CenterY;
-        if (rng.Next(0, 2) == 0)
+        bool horizontalFirst = rng.Next(0, 2) == 0;
+
+        // si ce trajet traverse une autre salle, on essaie l'autre sens
+        if (CrossesOtherRoom(x1, y1, x2, y2, horizontalFirst, a, b) &&
+            !CrossesOtherRoom(x1, y1, x2, y2, !horizontalFirst, a, b))
+        {
+            horizontalFirst = !horizontalFirst;
+        }
+
+        if (horizontalFirst)
         {
             CarveH(x1, x2, y1);
             CarveV(y1, y2, x2);
@@ -98,6 +144,36 @@ public class DungeonLayout
             CarveV(y1, y2, x1);
             CarveH(x1, x2, y2);
         }
+    }
+
+    // Le trajet en L passe-t-il dans une salle autre que a et b ?
+    bool CrossesOtherRoom(int x1, int y1, int x2, int y2, bool horizontalFirst, RoomRect a, RoomRect b)
+    {
+        // le coin du L
+        int cornerX = horizontalFirst ? x2 : x1;
+        int cornerY = horizontalFirst ? y1 : y2;
+
+        foreach (var r in rooms)
+        {
+            bool isA = r.x == a.x && r.y == a.y;
+            bool isB = r.x == b.x && r.y == b.y;
+            if (isA || isB) continue;
+
+            if (SegmentTouchesRoom(x1, y1, cornerX, cornerY, r)) return true;
+            if (SegmentTouchesRoom(cornerX, cornerY, x2, y2, r)) return true;
+        }
+        return false;
+    }
+
+    // Un segment droit (horizontal ou vertical) touche-t-il ce rectangle ?
+    bool SegmentTouchesRoom(int xa, int ya, int xb, int yb, RoomRect r)
+    {
+        int xLo = System.Math.Min(xa, xb), xHi = System.Math.Max(xa, xb);
+        int yLo = System.Math.Min(ya, yb), yHi = System.Math.Max(ya, yb);
+
+        bool overlapX = xLo < r.x + r.w && xHi >= r.x;
+        bool overlapY = yLo < r.y + r.h && yHi >= r.y;
+        return overlapX && overlapY;
     }
 
     void CarveH(int xa, int xb, int y)
